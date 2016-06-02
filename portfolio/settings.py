@@ -144,6 +144,7 @@ COMPRESS_CSS_FILTERS = [
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SUIT_CONFIG = {
     # header
