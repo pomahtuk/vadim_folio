@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news',
     'works',
-    'recomendations',
+    'recommendations',
     'suit_redactor',
+    'compressor',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,6 +121,23 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/scss', 'sass --scss {infile} {outfile}'),
+    ('text/es6', 'cat {infile} | babel > {outfile}'),
+)
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSCompressorFilter'
+]
 
 
 # Static files (CSS, JavaScript, Images)

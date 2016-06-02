@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-@python_2_unicode_compatible  # only if you need to support Python 2
+@python_2_unicode_compatible
 class News(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     content = models.TextField(verbose_name='Содержание')
