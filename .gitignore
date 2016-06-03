@@ -64,6 +64,7 @@ target/
 .idea
 
 portfolio/media
+CACHE
 
 
 bower_components
