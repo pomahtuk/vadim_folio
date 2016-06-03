@@ -14,8 +14,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-DEBUG = os.environ.get('DEBUG', True)
-
+DEBUG = os.environ.get('DEBUG', False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -178,4 +177,6 @@ THUMBNAIL_FORMAT = 'PNG'
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_REDIS_HOST = 'localhost' # default
 THUMBNAIL_REDIS_PORT = 6379
+
+ALLOWED_HOSTS = ['*']
 
