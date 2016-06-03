@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
