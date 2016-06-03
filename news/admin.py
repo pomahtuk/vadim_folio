@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from .models import News
 from suit_redactor.widgets import RedactorWidget
 from suit.widgets import SuitSplitDateTimeWidget
+from sorl.thumbnail.admin import AdminImageMixin
 
 
 class NewsForm(ModelForm):
@@ -13,7 +14,7 @@ class NewsForm(ModelForm):
         }
 
 
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
     form = NewsForm
 
 

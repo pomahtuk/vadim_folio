@@ -14,6 +14,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+DEBUG = os.environ.get('DEBUG', False)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
     'recommendations',
     'suit_redactor',
     'compressor',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -145,7 +149,9 @@ COMPRESS_CSS_FILTERS = [
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio', 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'portfolio', 'media')
 
 SUIT_CONFIG = {
     # header
@@ -169,3 +175,10 @@ SUIT_CONFIG = {
     # misc
     # 'LIST_PER_PAGE': 15
 }
+
+# solr-thumbnail related settings
+THUMBNAIL_FORMAT = 'PNG'
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
+THUMBNAIL_REDIS_HOST = 'localhost' # default
+THUMBNAIL_REDIS_PORT = 6379
+
