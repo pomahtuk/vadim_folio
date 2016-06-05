@@ -13,16 +13,29 @@
 
     {% compress css %}
       <link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css' %}">
+      <link rel="stylesheet" href="{% static 'bower_components/Swiper/dist/css/swiper.css' %}">
       <link rel="stylesheet" href="{% static 'portfolio_assets/css/main.css' %}">
       <link rel="stylesheet" href="{% static 'portfolio_assets/css/tumkov.css' %}">
     {% endcompress %}
   </head>
   <body>
 
-    <!-- Add your site or application content here -->
+    <nav id="menu">
+      <header>
+        <h2>Menu</h2>
+      </header>
+    </nav>
+
+    <main id="panel">
+      <header>
+        <h2>Panel</h2>
+      </header>
+    </main>
 
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+      <script src="{% static 'bower_components/slideout.js/dist/slideout.js' %}"></script>
+      <script src="{% static 'bower_components/Swiper/dist/js/swiper.jquery.js' %}"></script>
       <script src="{% static 'portfolio_assets/js/main.js' %}"></script>
     {% endcompress %}
 
