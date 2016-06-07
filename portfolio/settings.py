@@ -136,6 +136,7 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_CSS_FILTERS = [
+    'django_compressor_autoprefixer.AutoprefixerFilter',
     'compressor.filters.cssmin.CSSCompressorFilter'
 ]
 
