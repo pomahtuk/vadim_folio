@@ -1,0 +1,75 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic);
+
+@font-face {
+	font-family: 'FuturaPT';
+	src: url('/static/portfolio_assets/font/FuturaPT-Demi.eot');
+	src: url('/static/portfolio_assets/font/FuturaPT-Demi.eot?#iefix') format('embedded-opentype'),
+		url('/static/portfolio_assets/font/FuturaPT-Demi.woff') format('woff'),
+		url('/static/portfolio_assets/font/FuturaPT-Demi.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+html {
+  height: 100%;
+}
+
+body,
+.portfolio-body {
+  portfolio: 100%;
+  height: 100%;
+}
+
+body.portfolio-body {
+  font-size: 100%/1.4em;
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  color: #222;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+#main {
+  cursor: grab;
+}
+
+.portfolio-pages-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.portfolio-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.image-slider {
+  &--index{
+    background: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url('/static/portfolio_assets/img/main_bg.jpg') center center no-repeat;
+    background-size: cover;
+  }
+
+  &--contacts{
+    background: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url('/static/portfolio_assets/img/contacts_bg.jpg') center center no-repeat;
+    background-size: cover;
+  }
+
+  &--news{
+    background: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url('/static/portfolio_assets/img/news_bg.jpg') center center no-repeat;
+    background-size: cover;
+  }
+}

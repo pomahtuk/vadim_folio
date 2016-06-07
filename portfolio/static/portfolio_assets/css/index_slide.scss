@@ -1,0 +1,27 @@
+.index-content {
+  padding-bottom: calc(5% + 150px);
+}
+
+.index-text--catchy {
+  font-size: 22px;
+  line-height: 26px;
+  color: #fff;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.index-text--logo {
+  display: block;
+  margin: 0 auto;
+}
+
+.index-next-button {
+  display: block;
+  background: url('/static/portfolio_assets/img/mouse.png');
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  bottom: calc(5% + 20px);
+  left: calc(50% - 75px);
+  border-radius: 50px;
+}

@@ -7,7 +7,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Tumkov</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimal-ui, maximum-scale=1, minimum-scale=1" />
+    <link rel="shortcut icon" type="image/png" href="favicon.png?v1" sizes="16x16 32x32 64x64">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-precomposed.png">
 
     <!-- Place favicon.ico in the root directory -->
 
@@ -15,23 +18,121 @@
       <link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css' %}">
       <link rel="stylesheet" href="{% static 'bower_components/Swiper/dist/css/swiper.css' %}">
       <link rel="stylesheet" href="{% static 'portfolio_assets/css/main.css' %}">
-      <link rel="stylesheet" href="{% static 'portfolio_assets/css/tumkov.css' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/layout.scss' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/tumkov.scss' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/logo.scss' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/contacts_slide.scss' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/index_slide.scss' %}">
     {% endcompress %}
   </head>
-  <body>
+  <body class="portfolio-body">
 
-    <nav id="menu">
-      <header>
-        <h2>Menu</h2>
-      </header>
-    </nav>
+    <div class="portfolio-body">
+      <button class="btn-hamburger js-slideout-toggle">
+        <span>menu</span>
+      </button>
 
-    <main id="panel">
-      <header>
-        <h2>Panel</h2>
-      </header>
-    </main>
+      <nav id="menu" class="menu slideout-menu">
+        <section class="menu-section">
+          <div class="menu-section-align-wrapper">
 
+            <ul class="menu-section-list">
+
+              <li class="menu-item">
+                <a class="menu-item-link" data-index="1" href="#projects">
+                  <h3 class="menu-item-link-title">Проекты</h3>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a class="menu-item-link" data-index="2" href="#profile">
+                  <h3 class="menu-item-link-title">Профиль</h3>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a class="menu-item-link" data-index="3" href="#recommendations">
+                  <h3 class="menu-item-link-title">Рекомендации</h3>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a class="menu-item-link" data-index="4" href="#news">
+                  <h3 class="menu-item-link-title">Новости</h3>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a class="menu-item-link" data-index="5" href="#contacts">
+                  <h3 class="menu-item-link-title">Контакты</h3>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="social-buttons">
+            <a href="#" class="social-button social-button--facebook"></a>
+            <a href="#" class="social-button social-button--twitter"></a>
+            <a href="#" class="social-button social-button--instagramm"></a>
+            <a href="#" class="social-button social-button--youtube"></a>
+          </div>
+
+        </section>
+      </nav>
+
+      <a href="/" class="portfolio-logo">
+    		<img src="{% static 'portfolio_assets/img/small_logo.png' %}">
+    	</a>
+
+      <main id="main" class="main-panel slideout-panel swiper-container swiper-container-v">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide" data-hash="index">
+            <div class="portfolio-page image-slider image-slider--index">
+              <div class="index-content">
+
+                <img src="{% static 'portfolio_assets/img/logo.png' %}" class="index-text--logo" alt="тумков"  data-swiper-parallax="-300" >
+
+                <a href="#" class="index-next-button" data-swiper-parallax="-200"></a>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide" data-hash="contacts">
+            <div class="portfolio-page image-slider image-slider--contacts">
+
+              <ul class="portfolio-contacts-holder">
+                <li class="portfolio-contact-item" data-swiper-parallax="-100">
+                  <span class="portfolio-contact-item--image portfolio-contact-item--image__phone"></span>
+                  <p class="portfolio-contact-item--text">
+                     +7 921.977.99.88
+                  </p>
+                </li>
+
+                <li class="portfolio-contact-item" data-swiper-parallax="-200">
+                  <span class="portfolio-contact-item--image portfolio-contact-item--image__adress"></span>
+                  <p class="portfolio-contact-item--text">
+                     Санкт-Петербург, Весенняя тропа, 1, офис 123
+                  </p>
+                </li>
+
+                <li class="portfolio-contact-item" data-swiper-parallax="-300">
+                  <span class="portfolio-contact-item--image portfolio-contact-item--image__mail"></span>
+                  <p class="portfolio-contact-item--text">
+                     valentin@tumkov.com
+                  </p>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
       <script src="{% static 'bower_components/slideout.js/dist/slideout.js' %}"></script>

@@ -1,0 +1,19 @@
+$animation-duration: 15s;
+
+.portfolio-logo {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  z-index: 999;
+
+  img {
+    width: 150px;
+    height: 47px;
+  }
+}
+
+@media all and (min-width: 40em) {
+  .portfolio-logo {
+    top: 20px;
+  }
+}

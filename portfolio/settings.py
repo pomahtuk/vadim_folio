@@ -131,7 +131,7 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_PRECOMPILERS = (
-    ('text/scss', 'sass --scss {infile} {outfile}'),
+    ('text/scss', 'node-sass {infile} {outfile}'),
     ('text/es6', 'cat {infile} | babel > {outfile}'),
 )
 
@@ -179,4 +179,3 @@ THUMBNAIL_REDIS_HOST = 'localhost' # default
 THUMBNAIL_REDIS_PORT = 6379
 
 ALLOWED_HOSTS = ['*']
-
