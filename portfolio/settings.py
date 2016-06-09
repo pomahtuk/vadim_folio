@@ -14,6 +14,18 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'portfolio',  # Or path to database file if using sqlite3.
+        'USER': 'root',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+
 DEBUG = os.environ.get('DEBUG', False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -45,6 +57,8 @@ INSTALLED_APPS = [
     'suit_redactor',
     'compressor',
     'sorl.thumbnail',
+    'mptt',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -77,17 +91,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
