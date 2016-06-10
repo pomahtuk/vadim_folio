@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'mptt',
     'debug_toolbar',
+    'embed_video',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -153,6 +154,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio', 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'portfolio', 'media')
 
+# noinspection PyPackageRequirements
 SUIT_CONFIG = {
     # header
     'ADMIN_NAME': 'Портфолио',
@@ -165,12 +167,15 @@ SUIT_CONFIG = {
     # },
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
     # 'MENU_EXCLUDE': ('auth.group',),
-    # 'MENU': (
-    #     'sites',
-    #     {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
-    #     {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
-    #     {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
-    # ),
+    'MENU': (
+        'sites',
+        {'app': 'base', 'icon': 'icon-list-alt', 'models': 'Page'},
+        {'app': 'news', 'icon': 'icon-time', 'models': 'News'},
+        {'app': 'recommendations', 'icon': 'icon-check', 'models': 'Recommendation'},
+        {'app': 'works', 'icon': 'icon-picture', 'models': 'Work'},
+        {'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
+        {'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
+    ),
 
     # misc
     # 'LIST_PER_PAGE': 15
