@@ -2,7 +2,7 @@ from django.contrib import admin
 # Register your models here.
 from suit.admin import SortableModelAdmin
 from mptt.admin import MPTTModelAdmin
-from .models import Page
+from .models import Page, SettingsObject
 
 class CategoryAdmin(MPTTModelAdmin, SortableModelAdmin):
     mptt_level_indent = 20
@@ -12,4 +12,9 @@ class CategoryAdmin(MPTTModelAdmin, SortableModelAdmin):
     # Specify name of sortable property
     sortable = 'order'
 
+
+class SettingsAdmin(admin.ModelAdmin):
+    list_display = ('mail', 'phone', 'address')
+
 admin.site.register(Page, CategoryAdmin)
+admin.site.register(SettingsObject, SettingsAdmin)

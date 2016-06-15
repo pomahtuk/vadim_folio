@@ -4,6 +4,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 
+
 # Create your models here.
 @python_2_unicode_compatible
 class Page(MPTTModel):
@@ -51,3 +52,22 @@ class Page(MPTTModel):
     def __str__(self):
         return self.title
 
+
+# Create your models here.
+@python_2_unicode_compatible
+class SettingsObject(models.Model):
+    fb_url = models.CharField(max_length=200, verbose_name='Facebook')
+    insta_url = models.CharField(max_length=200, verbose_name='Instagramm')
+    vk_url = models.CharField(max_length=200, verbose_name='Vkontakte')
+    youtube_url = models.CharField(max_length=200, verbose_name='Youtube')
+    twitter_url = models.CharField(max_length=200, verbose_name='Twitter')
+    phone = models.CharField(max_length=200, verbose_name='Телефон')
+    address = models.CharField(max_length=200, verbose_name='Адрес')
+    mail = models.CharField(max_length=200, verbose_name='Почта')
+
+    class Meta:
+        verbose_name = 'Настройки'
+        verbose_name_plural = 'Настройки'
+
+    def __str__(self):
+        return self.mail
