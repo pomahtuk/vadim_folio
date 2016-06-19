@@ -7,5 +7,5 @@ def index(request):
     settings_data = SettingsObject.objects.all()[:1]
 
     return render(request, 'index.html', {
-        'settings': settings_data
+        'settings': settings_data[0]
     })

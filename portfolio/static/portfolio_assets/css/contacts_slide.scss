@@ -5,7 +5,7 @@
   width: 100%;
   position: absolute;
   left: 0;
-	bottom: 0;
+	bottom: 70px;
 }
 
 .portfolio-contact-item {
@@ -34,4 +34,43 @@
 
 .portfolio-contact-item--image__phone {
   background-position: -141px 0;
+}
+
+.social-networks {
+	position: absolute;
+	bottom: 20px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+
+	.social-network-link {
+		text-decoration: none;
+		padding: 0 5px;
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		background: url('/static/portfolio_assets/img/social.svg') no-repeat;
+
+		&:first-child {
+			padding-left: 0px;
+		}
+
+		&:last-child {
+			padding-right: 0px;
+		}
+
+		&-fb {}
+
+		&-tw {
+			background-position: -53px 0;
+		}
+
+		&-yt {
+			background-position: -112px 0;
+		}
+
+		&-ig {
+			background-position: -171px 0;
+		}
+	}
 }
