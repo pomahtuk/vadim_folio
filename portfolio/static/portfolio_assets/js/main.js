@@ -1,21 +1,25 @@
 $(function () {
 
-  let BackgroundVideoPlayers = [];
+  var BackgroundVideoPlayers = [];
 
-  let slideout = new Slideout({
+  var slideout = new Slideout({
     'panel': document.getElementById('main'),
     'menu': document.getElementById('menu'),
     'padding': -300,
     'tolerance': 70
   });
 
-  $('.js-slideout-toggle').click(() => slideout.toggle());
-  $('.menu-item-link, .menu-to-home, #main').click(() => slideout.close());
+  $('.js-slideout-toggle').click(function () {
+    slideout.toggle();
+  });
+  $('.menu-item-link, .menu-to-home, #main').click(function () {
+    slideout.close();
+  });
 
   function stopAllVideoPlayers() {
-    let players = BackgroundVideoPlayers;
+    var players = BackgroundVideoPlayers;
 
-    Object.keys(players).forEach((playerId) => {
+    Object.keys(players).forEach(function (playerId) {
       players[playerId].pauseVideo();
     });
   }
@@ -44,7 +48,7 @@ $(function () {
   //   }
   // }
 
-  let swiperV = new Swiper('.swiper-container-v', {
+  var swiperV = new Swiper('.swiper-container-v', {
     paginationClickable: true,
     direction: 'vertical',
     slidesPerView: 1,
@@ -78,7 +82,7 @@ $(function () {
   });
 
   $('.menu-item .menu-item-link, .menu-to-home').click(function (evt) {
-    let $elem = $(this),
+    var $elem = $(this),
       index = 0,
       slug = $elem.attr('href');
 
