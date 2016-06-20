@@ -35,41 +35,18 @@
       <nav id="menu" class="menu slideout-menu">
         <section class="menu-section">
           <div class="menu-section-align-wrapper">
-
             <ul class="menu-section-list">
-
-              <li class="menu-item">
-                <a class="menu-item-link" data-index="1" href="#projects">
-                  <h3 class="menu-item-link-title">Проекты</h3>
-                </a>
-              </li>
-
-              <li class="menu-item">
-                <a class="menu-item-link" data-index="2" href="#profile">
-                  <h3 class="menu-item-link-title">Профиль</h3>
-                </a>
-              </li>
-
-              <li class="menu-item">
-                <a class="menu-item-link" data-index="3" href="#recommendations">
-                  <h3 class="menu-item-link-title">Рекомендации</h3>
-                </a>
-              </li>
-
-              <li class="menu-item">
-                <a class="menu-item-link" data-index="4" href="#news">
-                  <h3 class="menu-item-link-title">Новости</h3>
-                </a>
-              </li>
-
-              <li class="menu-item">
-                <a class="menu-item-link" data-index="5" href="#contacts">
-                  <h3 class="menu-item-link-title">Контакты</h3>
-                </a>
-              </li>
-
+              {% for page in pages %}
+                {# excluding index page and any child pages #}
+                {% if page.role != 'MN' and page.level == 0 %}
+                  <li class="menu-item">
+                    <a class="menu-item-link" data-index="{{ page.order }}" href="#{{ page.slug }}">
+                      <h3 class="menu-item-link-title">{{ page.title }}</h3>
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
             </ul>
-
             <div class="social-networks" data-swiper-parallax="-100">
               <a href="{{settings.fb_url}}" class="social-network-link social-network-link-fb"></a>
               <a href="{{settings.twitter_url}}" class="social-network-link social-network-link-tw"></a>
@@ -77,14 +54,6 @@
               <a href="{{settings.youtube_url}}" class="social-network-link social-network-link-yt"></a>
             </div>
           </div>
-
-          <div class="social-buttons">
-            <a href="#" class="social-button social-button--facebook"></a>
-            <a href="#" class="social-button social-button--twitter"></a>
-            <a href="#" class="social-button social-button--instagramm"></a>
-            <a href="#" class="social-button social-button--youtube"></a>
-          </div>
-
         </section>
       </nav>
 
@@ -94,55 +63,63 @@
 
       <main id="main" class="main-panel slideout-panel swiper-container swiper-container-v">
         <div class="swiper-wrapper">
-
-          <div class="swiper-slide" data-hash="index">
-            <div class="portfolio-page image-slider image-slider--index">
-              <div class="index-content">
-
-                <img src="{% static 'portfolio_assets/img/Logo@index.svg' %}" class="index-text--logo" alt="тумков"  data-swiper-parallax="-300" >
-
-                <a href="#" class="index-next-button" data-swiper-parallax="-200"></a>
-
+          {% for page in pages %}
+            {% if page.role == 'MN' %}
+              {# display index #}
+              <div class="swiper-slide" data-hash="{{ page.slug }}">
+                <div class="portfolio-page image-slider image-slider--index">
+                  <div class="index-content">
+                    <img src="{% static 'portfolio_assets/img/Logo@index.svg' %}" class="index-text--logo" alt="тумков" data-swiper-parallax="-300" >
+                    <a href="#" class="index-next-button" data-swiper-parallax="-200"></a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div class="swiper-slide" data-hash="contacts">
-            <div class="portfolio-page image-slider image-slider--contacts">
-
-              <ul class="portfolio-contacts-holder">
-                <li class="portfolio-contact-item" data-swiper-parallax="-100">
-                  <span class="portfolio-contact-item--image portfolio-contact-item--image__phone"></span>
-                  <p class="portfolio-contact-item--text">
-                    {{settings.phone}}
-                  </p>
-                </li>
-
-                <li class="portfolio-contact-item" data-swiper-parallax="-200">
-                  <span class="portfolio-contact-item--image portfolio-contact-item--image__adress"></span>
-                  <p class="portfolio-contact-item--text">
-                    {{settings.address}}
-                  </p>
-                </li>
-
-                <li class="portfolio-contact-item" data-swiper-parallax="-300">
-                  <span class="portfolio-contact-item--image portfolio-contact-item--image__mail"></span>
-                  <p class="portfolio-contact-item--text">
-                    {{settings.mail}}
-                  </p>
-                </li>
-              </ul>
-
-
-              <div class="social-networks" data-swiper-parallax="-100">
-                <a href="{{settings.fb_url}}" class="social-network-link social-network-link-fb"></a>
-                <a href="{{settings.twitter_url}}" class="social-network-link social-network-link-tw"></a>
-                <a href="{{settings.insta_url}}" class="social-network-link social-network-link-ig"></a>
-                <a href="{{settings.youtube_url}}" class="social-network-link social-network-link-yt"></a>
+            {% elif page.role == 'NW' %}
+              {# query news #}
+            {% elif page.role == 'RC' %}
+              {# query recommendations #}
+            {% elif page.role == 'PJ' %}
+              {# query projects #}
+            {% elif page.role == 'PR' %}
+              {# query profiles #}
+              {% for sub_page in pages %}
+                {% if sub_page.role == 'PC' %}
+                {% endif %}
+              {% endfor %}
+            {% elif page.role == 'CT' %}
+              {# display contacts #}
+              <div class="swiper-slide" data-hash="{{ page.slug }}">
+                <div class="portfolio-page image-slider image-slider--contacts">
+                  <ul class="portfolio-contacts-holder">
+                    <li class="portfolio-contact-item" data-swiper-parallax="-100">
+                      <span class="portfolio-contact-item--image portfolio-contact-item--image__phone"></span>
+                      <p class="portfolio-contact-item--text">
+                        {{settings.phone}}
+                      </p>
+                    </li>
+                    <li class="portfolio-contact-item" data-swiper-parallax="-200">
+                      <span class="portfolio-contact-item--image portfolio-contact-item--image__adress"></span>
+                      <p class="portfolio-contact-item--text">
+                        {{settings.address}}
+                      </p>
+                    </li>
+                    <li class="portfolio-contact-item" data-swiper-parallax="-300">
+                      <span class="portfolio-contact-item--image portfolio-contact-item--image__mail"></span>
+                      <p class="portfolio-contact-item--text">
+                        {{settings.mail}}
+                      </p>
+                    </li>
+                  </ul>
+                  <div class="social-networks" data-swiper-parallax="-100">
+                    <a href="{{settings.fb_url}}" class="social-network-link social-network-link-fb"></a>
+                    <a href="{{settings.twitter_url}}" class="social-network-link social-network-link-tw"></a>
+                    <a href="{{settings.insta_url}}" class="social-network-link social-network-link-ig"></a>
+                    <a href="{{settings.youtube_url}}" class="social-network-link social-network-link-yt"></a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
+            {% endif %}
+          {% endfor %}
         </div>
       </main>
 
