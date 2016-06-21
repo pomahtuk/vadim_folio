@@ -8,6 +8,7 @@ from embed_video.fields import EmbedVideoField
 @python_2_unicode_compatible
 class Work(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
+    published = models.BooleanField(verbose_name='Опубликовано?', default=False)
 
     class Meta:
         verbose_name = 'Проект'

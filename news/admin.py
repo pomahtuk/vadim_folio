@@ -16,6 +16,8 @@ class NewsForm(ModelForm):
 
 class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
     form = NewsForm
+    list_display = ('title', 'pub_date', 'published')
+    list_editable = ('published',)
 
 
 admin.site.register(News, NewsAdmin)

@@ -9,6 +9,7 @@ class News(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     image = ImageField(upload_to='news/', verbose_name='Изображение', null=True)
     content = models.TextField(verbose_name='Содержание')
+    published = models.BooleanField(verbose_name='Опубликовано?', default=False)
     pub_date = models.DateTimeField('Дата публикации')
 
     class Meta:

@@ -171,7 +171,7 @@ SUIT_CONFIG = {
         'sites',
         {'app': 'base', 'icon': 'icon-list-alt', 'models': 'Page'},
         {'app': 'news', 'icon': 'icon-time', 'models': 'News'},
-        {'app': 'recommendations', 'icon': 'icon-check', 'models': 'Recommendation'},
+        {'app': 'recommendations', 'icon': 'icon-check', 'models': 'Recommendations'},
         {'app': 'works', 'icon': 'icon-picture', 'models': 'Work'},
         {'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
         {'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
