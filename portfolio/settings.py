@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 """
 Django settings for portfolio project.
 
@@ -169,11 +168,11 @@ SUIT_CONFIG = {
     # 'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
         'sites',
-        {'app': 'base', 'icon': 'icon-list-alt', 'models': 'Page'},
-        {'app': 'news', 'icon': 'icon-time', 'models': 'News'},
-        {'app': 'recommendations', 'icon': 'icon-check', 'models': 'Recommendations'},
-        {'app': 'works', 'icon': 'icon-picture', 'models': 'Work'},
-        {'label': 'Settings', 'icon': 'icon-cog', 'models': ('auth.user', 'auth.group')},
+        {'app': 'base', 'icon': 'icon-list-alt'},
+        {'app': 'news', 'icon': 'icon-time'},
+        {'app': 'recommendations', 'icon': 'icon-check'},
+        {'app': 'works', 'icon': 'icon-picture'},
+        {'label': u'Контакты', 'icon': 'icon-cog', 'url': '/admin/base/settingsobject/1/change/'},
         {'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
     ),
 
