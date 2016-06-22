@@ -167,13 +167,12 @@ SUIT_CONFIG = {
     # 'MENU_OPEN_FIRST_CHILD': True, # Default True
     # 'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
-        'sites',
+        # 'sites',
         {'app': 'base', 'icon': 'icon-list-alt'},
         {'app': 'news', 'icon': 'icon-time'},
         {'app': 'recommendations', 'icon': 'icon-check'},
-        {'app': 'works', 'icon': 'icon-picture'},
+        {'label': u'Проекты', 'app': 'works', 'icon': 'icon-picture'},
         {'label': u'Контакты', 'icon': 'icon-cog', 'url': '/admin/base/settingsobject/1/change/'},
-        {'label': 'Support', 'icon': 'icon-question-sign', 'url': '/support/'},
     ),
 
     # misc
