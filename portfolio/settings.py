@@ -168,7 +168,7 @@ SUIT_CONFIG = {
     # 'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
         # 'sites',
-        {'label': u'Структура', 'icon': 'icon-list-alt', 'url': '/admin/base/page/'},
+        {'label': u'Меню', 'icon': 'icon-list-alt', 'url': '/admin/base/page/'},
         {'app': 'news', 'icon': 'icon-time'},
         {'app': 'recommendations', 'icon': 'icon-check'},
         {'label': u'Проекты', 'app': 'works', 'icon': 'icon-picture'},
