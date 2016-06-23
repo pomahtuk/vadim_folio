@@ -2,6 +2,8 @@
 <html class="no-js" lang="">
   {% load staticfiles %}
   {% load compress %}
+  {% load portfolio_extras %}
+  {% load thumbnail %}
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,6 +20,7 @@
       <link rel="stylesheet" href="{% static 'bower_components/normalize-css/normalize.css' %}">
       <link rel="stylesheet" href="{% static 'bower_components/Swiper/dist/css/swiper.css' %}">
       <link rel="stylesheet" href="{% static 'portfolio_assets/css/main.css' %}">
+      <link rel="stylesheet" href="{% static 'bower_components/jquery.mb.ytplayer/dist/css/jquery.mb.YTPlayer.min.css' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/layout.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/tumkov.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/logo.scss' %}">
@@ -66,7 +69,7 @@
           {% for page in pages %}
             {% if page.role == 'MN' %}
               {# display index #}
-              <div class="swiper-slide" data-hash="{{ page.slug }}">
+              <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--index">
                   <div class="index-content">
                     <img src="{% static 'portfolio_assets/img/Logo@index.svg' %}" class="index-text--logo" alt="тумков" data-swiper-parallax="-300" >
@@ -75,9 +78,44 @@
                 </div>
               </div>
             {% elif page.role == 'NW' %}
-              {# query news #}
+              <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
+                <div class="portfolio-page image-slider image-slider--news">
+                  {# query news #}
+                  <div class="swiper-wrapper">
+                    {% for newsItem in news %}
+                      <div class="swiper-slide portfolio-news-slider-wrapper">
+                        <div class="portfolio-news-item">
+                          <span class="portfolio-news-item--date">{{ newsItem.pub_date }}</span>
+                          <h2 class="portfolio-news-item--title">{{ newsItem.title }}</h2>
+                          {% thumbnail newsItem.image "250x50" crop="center" format="PNG" as im %}
+                              <img src="{{ im.url }}" class="portfolio-news-item--image">
+                          {% endthumbnail %}
+                          <p class="portfolio-news-item--text">{{ newsItem.content | safe }}</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="swiper-pagination-evo"></div>
+                </div>
+              </div>
             {% elif page.role == 'RC' %}
-              {# query recommendations #}
+              <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
+                <div class="portfolio-page image-slider image-slider--recommendations">
+                  {% for recommendation in recommendations %}
+                    <div class="swiper-slide portfolio-news-slider-wrapper">
+                      <div class="portfolio-news-item">
+                        <span class="portfolio-news-item--date">{{ recommendation.pub_date }}</span>
+                        <h2 class="portfolio-news-item--title">{{ recommendation.title }}</h2>
+                        {% thumbnail recommendation.image "250x50" crop="center" format="PNG" as im %}
+                            <img src="{{ im.url }}" class="portfolio-news-item--image">
+                        {% endthumbnail %}
+                        <p class="portfolio-news-item--text">{{ recommendation.content | safe }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  <div class="swiper-pagination-evo"></div>
+                </div>
+              </div>
             {% elif page.role == 'PJ' %}
               {# query projects #}
             {% elif page.role == 'PR' %}
@@ -88,7 +126,7 @@
               {% endfor %}
             {% elif page.role == 'CT' %}
               {# display contacts #}
-              <div class="swiper-slide" data-hash="{{ page.slug }}">
+              <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--contacts">
                   <ul class="portfolio-contacts-holder">
                     <li class="portfolio-contact-item" data-swiper-parallax="-100">
@@ -128,6 +166,7 @@
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
       <script src="{% static 'bower_components/slideout.js/dist/slideout.js' %}"></script>
       <script src="{% static 'bower_components/Swiper/dist/js/swiper.jquery.js' %}"></script>
+      <script src="{% static 'bower_components/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js' %}"></script>
       <script src="{% static 'portfolio_assets/js/main.js' %}"></script>
     {% endcompress %}
 

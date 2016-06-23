@@ -3,8 +3,9 @@ from django.contrib import admin
 from suit.admin import SortableModelAdmin
 from mptt.admin import MPTTModelAdmin
 from .models import Page, SettingsObject
+from sorl.thumbnail.admin import AdminImageMixin
 
-class CategoryAdmin(MPTTModelAdmin, SortableModelAdmin):
+class CategoryAdmin(MPTTModelAdmin, SortableModelAdmin, AdminImageMixin):
     mptt_level_indent = 20
     list_display = ('title', 'slug', 'is_active')
     list_editable = ('is_active',)

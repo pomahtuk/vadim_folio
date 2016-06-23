@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
+from sorl.thumbnail import ImageField
+from embed_video.fields import EmbedVideoField
 
 
 # Create your models here.
@@ -41,6 +43,9 @@ class Page(MPTTModel):
         default=GENERIC,
         verbose_name='Тип страницы'
     )
+    use_video = models.BooleanField(null=False, default=False, verbose_name='Видеобэкграунд?')
+    image = ImageField(upload_to='pages/', verbose_name='Изображение', null=True, blank=True)
+    video = EmbedVideoField(verbose_name='Ссылка на youtube', null=True, blank=True)
 
     class MPTTMeta:
         order_insertion_by = ['order']
