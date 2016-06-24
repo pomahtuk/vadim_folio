@@ -25,7 +25,7 @@ class WorkPart(models.Model):
     use_video = models.BooleanField(null=False, default=False, verbose_name='Видеобэкграунд?')
     image = ImageField(upload_to='works/', verbose_name='Изображение', null=True, blank=True)
     video = EmbedVideoField(verbose_name='Ссылка на youtube', null=True, blank=True)
-    work = models.ForeignKey(Work, verbose_name='Проект', null=True, related_name='detail')
+    work = models.ForeignKey(Work, verbose_name='Проект', null=True, related_name='details')
 
     class Meta:
         verbose_name = 'Подробность'

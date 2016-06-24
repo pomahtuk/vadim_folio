@@ -118,6 +118,34 @@
               </div>
             {% elif page.role == 'PJ' %}
               {# query projects #}
+              {# TODO: slide for all projects list #}
+              <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
+                <div class="portfolio-page image-slider image-slider--works">
+                  {% for work in works %}
+                    {{ work.title }}
+                  {% endfor %}
+                </div>
+              </div>
+              {% for work in works %}
+                <div class="swiper-slide" data-hash="{{ page.slug }}-{{ work.pk }}">
+                  <div class="portfolio-page image-slider image-slider--work">
+                    <div class="portfolio-work-slides-container swiper-container-h">
+                      <div class="swiper-wrapper">
+                        {% for detail in work.details.all %}
+                          <div class="swiper-slide portfolio-work-slides-slider-wrapper">
+                            <div class="portfolio-work-slide-item portfolio-page image-slider"{{ detail | page_attrs | safe }}>
+                              <div class="portfolio-work-item--text" data-swiper-parallax="-250">
+                                {{ detail.content | safe }}
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="swiper-pagination-h"></div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
             {% elif page.role == 'PR' %}
               {# query profiles #}
               {% for sub_page in pages %}
