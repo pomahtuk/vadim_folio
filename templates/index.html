@@ -26,6 +26,7 @@
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/logo.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/contacts_slide.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/index_slide.scss' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'portfolio_assets/css/news.css' %}">
     {% endcompress %}
   </head>
   <body class="portfolio-body">
@@ -80,40 +81,44 @@
             {% elif page.role == 'NW' %}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--news">
-                  {# query news #}
-                  <div class="swiper-wrapper">
-                    {% for newsItem in news %}
-                      <div class="swiper-slide portfolio-news-slider-wrapper">
-                        <div class="portfolio-news-item">
-                          <span class="portfolio-news-item--date">{{ newsItem.pub_date }}</span>
-                          <h2 class="portfolio-news-item--title">{{ newsItem.title }}</h2>
-                          {% thumbnail newsItem.image "250x50" crop="center" format="PNG" as im %}
-                              <img src="{{ im.url }}" class="portfolio-news-item--image">
-                          {% endthumbnail %}
-                          <p class="portfolio-news-item--text">{{ newsItem.content | safe }}</p>
+                  <div class="portfolio-news-container swiper-container-evo" data-swiper-parallax="-300">
+                    {# query news #}
+                    <div class="swiper-wrapper">
+                      {% for newsItem in news %}
+                        <div class="swiper-slide portfolio-news-slider-wrapper">
+                          <div class="portfolio-news-item">
+                            <span class="portfolio-news-item--date">{{ newsItem.pub_date }}</span>
+                            <h2 class="portfolio-news-item--title">{{ newsItem.title }}</h2>
+                            {% thumbnail newsItem.image "250x50" crop="center" format="PNG" as im %}
+                                <img src="{{ im.url }}" class="portfolio-news-item--image">
+                            {% endthumbnail %}
+                            <p class="portfolio-news-item--text">{{ newsItem.content | safe }}</p>
+                          </div>
                         </div>
-                      </div>
-                    {% endfor %}
+                      {% endfor %}
+                    </div>
+                    <div class="swiper-pagination-evo"></div>
                   </div>
-                  <div class="swiper-pagination-evo"></div>
                 </div>
               </div>
             {% elif page.role == 'RC' %}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--recommendations">
-                  {% for recommendation in recommendations %}
-                    <div class="swiper-slide portfolio-news-slider-wrapper">
-                      <div class="portfolio-news-item">
-                        <span class="portfolio-news-item--date">{{ recommendation.pub_date }}</span>
-                        <h2 class="portfolio-news-item--title">{{ recommendation.title }}</h2>
-                        {% thumbnail recommendation.image "250x50" crop="center" format="PNG" as im %}
-                            <img src="{{ im.url }}" class="portfolio-news-item--image">
-                        {% endthumbnail %}
-                        <p class="portfolio-news-item--text">{{ recommendation.content | safe }}</p>
+                  <div class="portfolio-news-container swiper-container-evo" data-swiper-parallax="-300">
+                    {% for recommendation in recommendations %}
+                      <div class="swiper-slide portfolio-news-slider-wrapper">
+                        <div class="portfolio-news-item">
+                          <span class="portfolio-news-item--date">{{ recommendation.pub_date }}</span>
+                          <h2 class="portfolio-news-item--title">{{ recommendation.title }}</h2>
+                          {% thumbnail recommendation.image "250x50" crop="center" format="PNG" as im %}
+                              <img src="{{ im.url }}" class="portfolio-news-item--image">
+                          {% endthumbnail %}
+                          <p class="portfolio-news-item--text">{{ recommendation.content | safe }}</p>
+                        </div>
                       </div>
-                    </div>
-                  {% endfor %}
-                  <div class="swiper-pagination-evo"></div>
+                    {% endfor %}
+                    <div class="swiper-pagination-evo"></div>
+                  </div>
                 </div>
               </div>
             {% elif page.role == 'PJ' %}
