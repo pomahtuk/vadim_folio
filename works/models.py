@@ -9,6 +9,9 @@ from embed_video.fields import EmbedVideoField
 class Work(models.Model):
     title = models.CharField(max_length=200, verbose_name='Назавние')
     published = models.BooleanField(verbose_name='Опубликовано?', default=False)
+    use_video = models.BooleanField(null=False, default=False, verbose_name='Видеобэкграунд?')
+    image = ImageField(upload_to='works/', verbose_name='Изображение', null=True, blank=True)
+    video = EmbedVideoField(verbose_name='Ссылка на youtube', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Проект'

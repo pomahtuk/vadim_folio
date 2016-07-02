@@ -81,7 +81,7 @@
             {% elif page.role == 'NW' %}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--news">
-                  <div class="portfolio-news-container swiper-container-evo" data-swiper-parallax="-300">
+                  <div class="portfolio-news-container swiper-container-news" data-swiper-parallax="-300">
                     {# query news #}
                     <div class="swiper-wrapper">
                       {% for newsItem in news %}
@@ -89,7 +89,7 @@
                           <div class="portfolio-news-item">
                             <span class="portfolio-news-item--date">{{ newsItem.pub_date }}</span>
                             <h2 class="portfolio-news-item--title">{{ newsItem.title }}</h2>
-                            {% thumbnail newsItem.image "250x50" crop="center" format="PNG" as im %}
+                            {% thumbnail newsItem.image "260x200" crop="center" format="PNG" as im %}
                                 <img src="{{ im.url }}" class="portfolio-news-item--image">
                             {% endthumbnail %}
                             <p class="portfolio-news-item--text">{{ newsItem.content | safe }}</p>
@@ -97,27 +97,29 @@
                         </div>
                       {% endfor %}
                     </div>
-                    <div class="swiper-pagination-evo"></div>
+                    <div class="swiper-pagination-news"></div>
                   </div>
                 </div>
               </div>
             {% elif page.role == 'RC' %}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
                 <div class="portfolio-page image-slider image-slider--recommendations">
-                  <div class="portfolio-news-container swiper-container-evo" data-swiper-parallax="-300">
-                    {% for recommendation in recommendations %}
-                      <div class="swiper-slide portfolio-news-slider-wrapper">
-                        <div class="portfolio-news-item">
-                          <span class="portfolio-news-item--date">{{ recommendation.pub_date }}</span>
-                          <h2 class="portfolio-news-item--title">{{ recommendation.title }}</h2>
-                          {% thumbnail recommendation.image "250x50" crop="center" format="PNG" as im %}
-                              <img src="{{ im.url }}" class="portfolio-news-item--image">
-                          {% endthumbnail %}
-                          <p class="portfolio-news-item--text">{{ recommendation.content | safe }}</p>
+                  <div class="portfolio-news-container swiper-container-recommendations" data-swiper-parallax="-300">
+                    <div class="swiper-wrapper">
+                      {% for recommendation in recommendations %}
+                        <div class="swiper-slide portfolio-news-slider-wrapper">
+                          <div class="portfolio-news-item">
+                            <span class="portfolio-news-item--date">{{ recommendation.pub_date }}</span>
+                            <h2 class="portfolio-news-item--title">{{ recommendation.title }}</h2>
+                            {% thumbnail recommendation.image "260x200" crop="center" format="PNG" as im %}
+                                <img src="{{ im.url }}" class="portfolio-news-item--image">
+                            {% endthumbnail %}
+                            <p class="portfolio-news-item--text">{{ recommendation.content | safe }}</p>
+                          </div>
                         </div>
-                      </div>
-                    {% endfor %}
-                    <div class="swiper-pagination-evo"></div>
+                      {% endfor %}
+                    </div>
+                    <div class="swiper-pagination-recommendations"></div>
                   </div>
                 </div>
               </div>
@@ -138,8 +140,9 @@
                       <div class="swiper-wrapper">
                         {% for detail in work.details.all %}
                           <div class="swiper-slide portfolio-work-slides-slider-wrapper">
-                            <div class="portfolio-work-slide-item portfolio-page image-slider"{{ detail | page_attrs | safe }}>
+                            <div class="portfolio-work-slide-item portfolio-page image-slider" {{ detail | page_attrs | safe }}>
                               <div class="portfolio-work-item--text" data-swiper-parallax="-250">
+                                <h2>{{ work.title }}</h2>
                                 {{ detail.content | safe }}
                               </div>
                             </div>
@@ -153,10 +156,36 @@
               {% endfor %}
             {% elif page.role == 'PR' %}
               {# query profiles #}
-              {% for sub_page in pages %}
-                {% if sub_page.role == 'PC' %}
-                {% endif %}
-              {% endfor %}
+              <div class="swiper-slide" data-hash="{{ page.slug }}">
+                <div class="portfolio-page image-slider image-slider--profile">
+                  <div class="portfolio-profile-slides-container swiper-container-h">
+                    <div class="swiper-wrapper">
+                      {% for sub_page in pages %}
+                        {% if sub_page.role == 'PC' %}
+                          <div class="swiper-slide portfolio-profile-slides-slider-wrapper">
+                            <div class="portfolio-profile-slide-item portfolio-page image-slider" {{ sub_page | page_attrs | safe }}>
+                              <div class="portfolio-profile-item--text" data-swiper-parallax="-250">
+                                <h2>ВАЛЕНТИН ТУМКОВ</h2>
+                                <table style="width: 100%">
+                                  <tr>
+                                    <td style="vertical-align: top;">
+                                      <h2 class="portfolio-profile-text-subheading">{{ sub_page.title }}</h2>
+                                    </td>
+                                    <td style="vertical-align: top; text-align: left">
+                                      {{ sub_page.content | safe }}
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="swiper-pagination-h"></div>
+                  </div>
+                </div>
+              </div>
             {% elif page.role == 'CT' %}
               {# display contacts #}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
@@ -200,6 +229,7 @@
       <script src="{% static 'bower_components/slideout.js/dist/slideout.js' %}"></script>
       <script src="{% static 'bower_components/Swiper/dist/js/swiper.jquery.js' %}"></script>
       <script src="{% static 'bower_components/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js' %}"></script>
+      <script src="{% static 'portfolio_assets/js/menu.js' %}"></script>
       <script src="{% static 'portfolio_assets/js/main.js' %}"></script>
     {% endcompress %}
 

@@ -2,20 +2,6 @@ $(function () {
 
   var BackgroundVideoPlayers = [];
 
-  var slideout = new Slideout({
-    'panel': document.getElementById('main'),
-    'menu': document.getElementById('menu'),
-    'padding': -300,
-    'tolerance': 70
-  });
-
-  $('.js-slideout-toggle').click(function () {
-    slideout.toggle();
-  });
-  $('.menu-item-link, .menu-to-home, #main').click(function () {
-    slideout.close();
-  });
-
   function stopAllVideoPlayers() {
     var players = BackgroundVideoPlayers;
     Object.keys(players).forEach(function (playerId) {
@@ -23,13 +9,32 @@ $(function () {
     });
   }
 
+  function swiperSlideChangeCallback (swiper) {
+    var $element = $(swiper.slides[swiper.activeIndex]),
+      $videoContainer = $element.find('[data-url]'),
+      videoUrl = $videoContainer.data('url');
+
+    if ($videoContainer.length > 0) {
+      stopAllVideoPlayers();
+
+      // dirty hack! should be using some smarter solution
+      var playerSeekingInterval = setInterval(function() {
+        var player = BackgroundVideoPlayers[videoUrl];
+        if (player) {
+          clearInterval(playerSeekingInterval);
+          player.playVideo();
+        }
+      }, 100);
+    }
+  }
+
   $('.swiper-slide.work-item-slider-wrapper, .portfolio-page.image-slider').each(function (index, item) {
     var $item = $(item),
       itemData = $item.data() || {};
-  
+
     if (itemData.url) {
       var $videoElem = $(`<div id=${itemData.url}></div>`).prependTo($item);
-  
+
       $videoElem.YTPlayer({
         fitToBackground: true,
         videoId: itemData.url,
@@ -46,7 +51,7 @@ $(function () {
     }
   });
 
-  var swiperV = new Swiper('.swiper-container-v', {
+  window.swiperV = new Swiper('.swiper-container-v', {
     paginationClickable: true,
     direction: 'vertical',
     slidesPerView: 1,
@@ -58,42 +63,48 @@ $(function () {
     grabCursor: false,
     keyboardControl: true,
     mousewheelForceToAxis: true,
-    onSlideChangeEnd: function (swiper) {
-      var $element = $(swiper.slides[swiper.activeIndex]),
-        $videoContainer = $element.find('[data-url]'),
-        videoUrl = $videoContainer.data('url');
-    
-      if ($videoContainer.length > 0) {
-        stopAllVideoPlayers();
-    
-        // dirty hack! should be using some smarter solution
-        var playerSeekingInterval = setInterval(function() {
-          var player = BackgroundVideoPlayers[videoUrl];
-          if (player) {
-            clearInterval(playerSeekingInterval);
-            player.playVideo();
-          }
-        }, 100);
-      }
-    
-    }
+    onSlideChangeEnd: swiperSlideChangeCallback
   });
 
-  $('.menu-item .menu-item-link, .menu-to-home').click(function (evt) {
-    var $elem = $(this),
-      index = 0,
-      slug = $elem.attr('href');
+  var listSwiperSettings = {
+    slidesPerView: 'auto',
+    paginationClickable: true,
+    spaceBetween: 20,
+    roundLengths: true,
+    grabCursor: false,
+    onSlideChangeEnd: swiperSlideChangeCallback,
+    // threshold: 50,
+    // shortSwipes: false
+  }
 
-    // cut off a hash
-    slug = slug.split('#')[1];
+  var swiperNews = new Swiper('.swiper-container-news', $.extend({}, listSwiperSettings, {
+    pagination: '.swiper-pagination-news',
+  }));
 
-    if (slug) {
-      evt.preventDefault();
-      index = $(`[data-hash=${slug}]`).index();
-    }
+  var swiperRecommendations = new Swiper('.swiper-container-recommendations', $.extend({}, listSwiperSettings, {
+    pagination: '.swiper-pagination-recommendations',
+  }));
 
-    swiperV.slideTo(index);
+  $('.portfolio-page.image-slider.image-slider--work, .portfolio-page.image-slider.image-slider--profile').each(function (index, elem) {
+    var $elem = $(elem);
 
+    var swiperElement = $elem.find('.swiper-container-h').get(0),
+      swiperPagination = $elem.find('.swiper-pagination-h').get(0);
+
+    var swiper = new Swiper(swiperElement, {
+      pagination: swiperPagination,
+      slidesPerView: 1,
+      paginationClickable: true,
+      spaceBetween: 0,
+      grabCursor: false,
+      parallax: true,
+      speed: 750,
+      grabCursor: false,
+      keyboardControl: true,
+      onSlideChangeEnd: swiperSlideChangeCallback
+      // threshold: 50,
+      // shortSwipes: false
+    });
   });
 
 });

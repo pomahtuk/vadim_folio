@@ -120,7 +120,31 @@ body,
   }
 }
 
-.botanika-house-slides-container {
+.portfolio-work-slides-container,
+.portfolio-profile-slides-container {
   width: 100%;
   height: 100%;
+	position: relative;
+}
+
+.portfolio-work-item--text,
+.portfolio-profile-item--text {
+	color: #fff;
+	z-index: 1;
+	z-index: 1;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 50px;
+	padding: 0 15%;
+}
+
+.portfolio-profile-text-subheading {
+	padding: 0 20% 0 0;
+	margin: 0;
+}
+
+h2 {
+  font-weight: normal;
 }

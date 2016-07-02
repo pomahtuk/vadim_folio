@@ -17,7 +17,7 @@ class WorkPartInline(AdminImageMixin, admin.StackedInline):
     model = WorkPart
     extra = 0
 
-class WorkAdmin(admin.ModelAdmin):
+class WorkAdmin(admin.ModelAdmin, AdminImageMixin):
     ordering = ('-title',)
     list_display = ('title', 'published')
     list_editable = ('published',)

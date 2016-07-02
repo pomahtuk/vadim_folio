@@ -17,7 +17,6 @@ def page_attrs(model):
                           "background-position: center center, center center;", "background-size: auto, cover;",
                           "background-image: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85))",
                           ", url(" + image.url + ");\""]
-                print ''.join(output)
                 return ''.join(output)
         return ''
 
