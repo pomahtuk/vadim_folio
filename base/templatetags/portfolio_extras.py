@@ -7,7 +7,8 @@ register = template.Library()
 @register.filter(name='page_attrs', is_safe=True)
 def page_attrs(model):
     """Removes all values of arg from the given string"""
-    if model.video and model.useVideo:
+    if model.video and model.use_video:
+        # TODO: process link and get video ID
         return "data-url='" + model.video + "'"
     else:
         if model.image and model.image.file:
