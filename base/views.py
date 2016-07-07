@@ -11,7 +11,7 @@ def index(request):
     pages = Page.objects.all()
     news = News.objects.filter(published=True).order_by('-pub_date')
     recommendations = Recommendations.objects.filter(published=True).order_by('-pub_date')
-    works = Work.objects.filter(published=True).prefetch_related('details').order_by('-pub_date')
+    works = Work.objects.filter(published=True).prefetch_related('details')
 
     return render(request, 'index.html', {
         'settings': settings_data[0],
