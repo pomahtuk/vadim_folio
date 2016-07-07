@@ -44,6 +44,7 @@ class Page(MPTTModel):
         verbose_name='Тип страницы'
     )
     use_video = models.BooleanField(null=False, default=False, verbose_name='Видеобэкграунд?')
+    # TODO: check russian letters in file name
     image = ImageField(upload_to='pages/', verbose_name='Изображение', null=True, blank=True)
     video = EmbedVideoField(verbose_name='Ссылка на youtube', null=True, blank=True)
 

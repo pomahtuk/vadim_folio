@@ -7,7 +7,8 @@ from sorl.thumbnail import ImageField
 @python_2_unicode_compatible
 class News(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
-    image = ImageField(upload_to='news/', verbose_name='Изображение', null=True)
+    # TODO: check russian letters in file name
+    image = ImageField(upload_to='news/', verbose_name='Изображение', null=True, blank=True)
     content = models.TextField(verbose_name='Содержание')
     published = models.BooleanField(verbose_name='Опубликовано?', default=False)
     pub_date = models.DateTimeField('Дата публикации')
