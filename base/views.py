@@ -9,9 +9,9 @@ from works.models import Work
 def index(request):
     settings_data = SettingsObject.objects.all()[:1]
     pages = Page.objects.all()
-    news = News.objects.filter(published=True)
-    recommendations = Recommendations.objects.filter(published=True)
-    works = Work.objects.filter(published=True).prefetch_related('details')
+    news = News.objects.filter(published=True).order_by('-pub_date')
+    recommendations = Recommendations.objects.filter(published=True).order_by('-pub_date')
+    works = Work.objects.filter(published=True).prefetch_related('details').order_by('-pub_date')
 
     return render(request, 'index.html', {
         'settings': settings_data[0],
