@@ -1,0 +1,27 @@
+.portfolio-work-items-page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+
+  .porfolio-work-item-in-list {
+    flex: 0 0 33.3333%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 33.3333%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .portfolio-work-items-page .porfolio-work-item-in-list {
+    flex: 0 0 100%;
+    max-height: 11.11111%;
+  }
+}

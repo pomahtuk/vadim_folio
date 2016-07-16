@@ -26,6 +26,7 @@
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/logo.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/contacts_slide.scss' %}">
       <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/index_slide.scss' %}">
+      <link rel="stylesheet" type="text/scss" href="{% static 'portfolio_assets/css/projects_slide.scss' %}">
       <link rel="stylesheet" type="text/css" href="{% static 'portfolio_assets/css/news.css' %}">
     {% endcompress %}
   </head>
@@ -127,10 +128,40 @@
               {# query projects #}
               {# TODO: slide for all projects list #}
               <div class="swiper-slide" data-hash="{{ page.slug }}" {{ page | page_attrs | safe }}>
-                <div class="portfolio-page image-slider image-slider--works">
-                  {% for work in works %}
-                    {{ work.title }}
-                  {% endfor %}
+                <div class="portfolio-page image-slider image-slider--work">
+                  <div class="portfolio-work-slides-container swiper-container-h">
+                    <div class="swiper-wrapper">
+                      {% for work in works %}
+                        {% if forloop.first %}
+                          <!-- start new page -->
+                          <div class="swiper-slide portfolio-work-slides-slider-wrapper">
+                            <div class="portfolio-work-slide-item portfolio-page image-slider">
+                              <div class="portfolio-work-items-page">
+                        {% endif %}
+                        <!-- page content -->
+                          {% thumbnail work.list_image "480x300" crop="center" format="PNG" as im %}
+                            <div class="porfolio-work-item-in-list" style="background-image: url({{ im.url }});">
+                              {{ work.title }}
+                            </div>
+                          {% endthumbnail %}
+
+                        <!-- end page content -->
+                        {% if forloop.counter in split_list or forloop.last %}
+                              </div>
+                            </div>
+                          </div>
+                          <!-- end previous page -->
+                        {% endif %}
+                        {% if forloop.counter in split_list %}
+                          <!-- start new page -->
+                          <div class="swiper-slide portfolio-work-slides-slider-wrapper">
+                            <div class="portfolio-work-slide-item portfolio-page image-slider">
+                              <div class="portfolio-work-items-page">
+                        {% endif %}
+
+                      {% endfor %}
+                    </div>
+                  </div>
                 </div>
               </div>
               {% for work in works %}

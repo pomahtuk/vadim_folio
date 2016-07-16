@@ -19,4 +19,5 @@ def index(request):
         'news': news,
         'recommendations': recommendations,
         'works': works,
+        'split_list': [9, 18, 27, 36, 45],
     })

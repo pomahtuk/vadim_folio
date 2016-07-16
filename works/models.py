@@ -17,6 +17,9 @@ class Work(models.Model):
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
 
+    def list_image(self):
+        return self.details.all()[0].image
+
     def __str__(self):
         return self.title
 
