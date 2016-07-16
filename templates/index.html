@@ -140,7 +140,7 @@
                         {% endif %}
                         <!-- page content -->
                           {% thumbnail work.list_image "480x300" crop="center" format="PNG" as im %}
-                            <div class="porfolio-work-item-in-list" style="background-image: url({{ im.url }});">
+                            <div class="porfolio-work-item-in-list" style="background-image: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url({{ im.url }});">
                               {{ work.title }}
                             </div>
                           {% endthumbnail %}

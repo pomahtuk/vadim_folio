@@ -15,7 +15,7 @@ def page_attrs(model):
             image = get_thumbnail(model.image.file, '1000', crop='center', quality=75)
             if image:
                 output = ["style=\"background-repeat: no-repeat, no-repeat;",
-                          "background-position: center center, center center;", "background-size: auto, cover;",
+                          "background-position: center center, center center;", "background-size: cover;",
                           "background-image: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85))",
                           ", url(" + image.url + ");\""]
                 return ''.join(output)
