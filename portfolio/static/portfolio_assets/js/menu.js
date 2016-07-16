@@ -28,7 +28,7 @@ $(function () {
 
     if (slug) {
       evt.preventDefault();
-      index = $(`[data-hash=${slug}]`).index();
+      index = $('[data-hash=' + slug + ']').index();
     }
 
     window.swiperV.slideTo(index);

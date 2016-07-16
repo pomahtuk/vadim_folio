@@ -1,9 +1,9 @@
 $(function () {
 
-  var BackgroundVideoPlayers = [];
+  window.BackgroundVideoPlayers = {};
 
   function stopAllVideoPlayers() {
-    var players = BackgroundVideoPlayers;
+    var players = window.BackgroundVideoPlayers;
     Object.keys(players).forEach(function (playerId) {
       players[playerId].pauseVideo();
     });
@@ -11,15 +11,14 @@ $(function () {
 
   function swiperSlideChangeCallback (swiper) {
     var $element = $(swiper.slides[swiper.activeIndex]),
-      $videoContainer = $element.find('[data-url]'),
-      videoUrl = $videoContainer.data('url');
+      videoUrl = $element.data('url');
 
-    if ($videoContainer.length > 0) {
-      stopAllVideoPlayers();
+    stopAllVideoPlayers();
 
+    if (videoUrl) {
       // dirty hack! should be using some smarter solution
       var playerSeekingInterval = setInterval(function() {
-        var player = BackgroundVideoPlayers[videoUrl];
+        var player = window.BackgroundVideoPlayers[videoUrl];
         if (player) {
           clearInterval(playerSeekingInterval);
           player.playVideo();
@@ -28,12 +27,12 @@ $(function () {
     }
   }
 
-  $('.swiper-slide.work-item-slider-wrapper, .portfolio-page.image-slider').each(function (index, item) {
+  $('#main .swiper-slide[data-url]').each(function (index, item) {
     var $item = $(item),
       itemData = $item.data() || {};
 
     if (itemData.url) {
-      var $videoElem = $(`<div id=${itemData.url}></div>`).prependTo($item);
+      var $videoElem = $('<div class="video-player-div" id="' + itemData.url + '"></div>').prependTo($item);
 
       $videoElem.YTPlayer({
         fitToBackground: true,
@@ -43,9 +42,19 @@ $(function () {
           modestbranding: 1,
         },
         callback: function() {
-          var player = $videoElem.data('ytPlayer').player;
+          var player = $videoElem.data('ytPlayer').player,
+            slug = $item.data('hash'),
+            parentSlug = $item.parents('.swiper-slide').first().data('hash'),
+            index = $('[data-hash=' + slug + ']').index(),
+            parentIndex = $('[data-hash=' + parentSlug + ']').index();
+
           player.pauseVideo();
-          BackgroundVideoPlayers[itemData.url] = player;
+          window.BackgroundVideoPlayers[itemData.url] = player;
+          // be smarter - resume video if we are on this slide from very beginning
+          // does not apply for sliders inside
+          if (window.swiperV.activeIndex == index || window.swiperV.activeIndex == parentIndex) {
+            player.playVideo();
+          }
         }
       });
     }
