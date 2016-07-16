@@ -16,6 +16,25 @@
     background-size: cover;
     color: white;
     font-weight: bold;
+
+    .view-details {
+      display: none;
+      font-weight: normal;
+      padding: 5px 25px;
+      background: rgba(0, 0, 0, .75);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    &:hover {
+      .view-details {
+        display: inline-block;
+      }
+
+      .title {
+        display: none;
+      }
+    }
   }
 }
 

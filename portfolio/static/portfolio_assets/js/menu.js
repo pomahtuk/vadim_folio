@@ -18,7 +18,7 @@ $(function () {
     return false;
   })
 
-  $('.menu-item .menu-item-link, .menu-to-home').click(function (evt) {
+  $('.menu-item .menu-item-link, .menu-to-home, .porfolio-work-item-in-list').click(function (evt) {
     var $elem = $(this),
       index = 0,
       slug = $elem.attr('href');

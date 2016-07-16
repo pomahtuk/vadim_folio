@@ -140,9 +140,12 @@
                         {% endif %}
                         <!-- page content -->
                           {% thumbnail work.list_image "480x300" crop="center" format="PNG" as im %}
-                            <div class="porfolio-work-item-in-list" style="background-image: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url({{ im.url }});">
-                              {{ work.title }}
-                            </div>
+                            <a href="#{{ page.slug }}-{{ work.pk }}" class="porfolio-work-item-in-list" style="background-image: radial-gradient(transparent 0%, transparent 15%, rgba(0,0,0, 0.85)), url({{ im.url }});">
+                              <span class="title">
+                                {{ work.title }}
+                              </span>
+                              <span class="view-details">Просмотр</span>
+                            </a>
                           {% endthumbnail %}
 
                         <!-- end page content -->
@@ -161,6 +164,7 @@
 
                       {% endfor %}
                     </div>
+                    <div class="swiper-pagination-h"></div>
                   </div>
                 </div>
               </div>
